@@ -75,6 +75,7 @@ for c, df in data.items():
         row = {"city": c, "model": model,
                "irradiation_kWh_m2_yr": round(df["G(i)"].sum() / 1000 / years, 0),
                "mean_T_ambient_C": round(d["T2m"].mean(), 1),
+                              "mean_wind_10m_ms": round(d["WS10m"].mean(), 2),
                "irr_weighted_T_cell_C": round((tc * w).sum() / w.sum(), 1),
                "max_T_cell_C": round(tc.max(), 1)}
         for g in GAMMAS:
@@ -83,7 +84,19 @@ for c, df in data.items():
 summary = pd.DataFrame(rows)
 summary.to_csv(os.path.join(OUT, "summary.csv"), index=False)
 print(summary.T.to_string(header=False))
-
+# ---- sensitivity to a possible irradiance bias (G scaled), gamma = -0.40 %/C ----
+rows2 = []
+for c, df in data.items():
+    for scale in (1.0, 0.9, 0.8, 0.7):
+        scaled = df.copy()
+        scaled["G(i)"] = scaled["G(i)"] * scale
+        for model in ("NOCT", "Faiman"):
+            rows2.append({"city": c, "G_scale": scale, "model": model,
+                          "loss_pct": round(energy_loss_pct(scaled, model, MAIN_GAMMA), 2)})
+irr_sens = pd.DataFrame(rows2).pivot(index=["city", "G_scale"], columns="model",
+                                     values="loss_pct")
+irr_sens.to_csv(os.path.join(OUT, "irradiance_sensitivity.csv"))
+print(irr_sens)
 # ---- monthly loss, main scenario (Faiman, gamma = -0.40 %/C) ----
 monthly = {}
 for c, df in data.items():
