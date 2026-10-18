@@ -1,0 +1,5 @@
+city,model,irradiation_kWh_m2_yr,mean_T_ambient_C,mean_wind_10m_ms,irr_weighted_T_cell_C,max_T_cell_C,loss_pct_gamma-0.30,loss_pct_gamma-0.35,loss_pct_gamma-0.40,loss_pct_gamma-0.45
+Baku,NOCT,1818.0,17.5,6.15,38.5,64.6,4.06,4.74,5.42,6.1
+Baku,Faiman,1818.0,17.5,6.15,29.3,64.5,1.3,1.52,1.74,1.96
+Seoul,NOCT,1805.0,15.6,2.47,35.8,62.5,3.23,3.77,4.3,4.84
+Seoul,Faiman,1805.0,15.6,2.47,31.2,65.3,1.86,2.17,2.48,2.79
