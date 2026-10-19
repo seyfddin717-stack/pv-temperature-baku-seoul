@@ -36,4 +36,8 @@ The script downloads the data from PVGIS and writes the outputs to `results/`.
 
 ## Data and citation
 
-Input data: PVGIS, European Commission Joint Research Centre. See `CITATION.cff` for how to cite this repository.
+Input data: PVGIS, European Commission Joint Research Centre.
+
+Preprint: Afandiyev, S. Temperature-Related Energy Loss of Silicon PV Modules in Baku and Seoul. Zenodo. https://doi.org/10.5281/zenodo.23465972
+
+See `CITATION.cff` for how to cite this repository.
